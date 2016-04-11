@@ -1,0 +1,6 @@
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\bin\Debug\TestAD2.exe.config
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\bin\Debug\TestAD2.exe
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\bin\Debug\TestAD2.pdb
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\obj\Debug\TestAD2.csprojResolveAssemblyReference.cache
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\obj\Debug\TestAD2.exe
+c:\users\tuanle1\documents\visual studio 2015\Projects\TestAD2\TestAD2\obj\Debug\TestAD2.pdb
