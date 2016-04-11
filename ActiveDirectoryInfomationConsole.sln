@@ -5,11 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActiveDirectoryInfomationConsole", "TestAD2\ActiveDirectoryInfomationConsole.csproj", "{A0E1C4F5-9F1A-44F0-8A13-CC9AE90E61F8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Baocao", "Baocao", "{40D9E4D5-5B62-4D84-9809-A5F352821A87}"
-	ProjectSection(SolutionItems) = preProject
-		\\Mac\Home\Desktop\[DoAn3] ActiveDirectoryInfomation.docx = \\Mac\Home\Desktop\[DoAn3] ActiveDirectoryInfomation.docx
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
