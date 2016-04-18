@@ -1,0 +1,3 @@
+C:\Users\tuanle1\Documents\Visual Studio 2015\Projects\TestAD2\ActiveDirectoryInfomationConsole\bin\Debug\TestAD2.exe.config
+C:\Users\tuanle1\Documents\Visual Studio 2015\Projects\TestAD2\ActiveDirectoryInfomationConsole\obj\Debug\TestAD2.exe
+C:\Users\tuanle1\Documents\Visual Studio 2015\Projects\TestAD2\ActiveDirectoryInfomationConsole\obj\Debug\TestAD2.pdb
