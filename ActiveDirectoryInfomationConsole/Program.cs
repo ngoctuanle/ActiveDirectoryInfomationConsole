@@ -93,11 +93,25 @@ namespace TestAD2
             }
         }
 
+        // Biến DirectoryEntry để lưu cấu trúc của AD khi thực hiện query
         static DirectoryEntry dEntry = null;
+        //Lưu tên domain mà Computer khi thực hiện chương trình này đang tham gia
         private static string stringDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
+        // List lưu thông tin các OU trong AD-DS (ActiveDirectory Domain Service)
         private static List<string> OU = new List<string>();
+        // List lưu thông tin các User
         private static List<User> Users = new List<User>();
 
+        /// <summary>
+        /// Hàm kiểm tra xem username và password nhập vào có hợp lệ trong domain hay không
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>
+        /// Trả về giá trị bool tương ứng:
+        /// - True: khi hợp lệ
+        /// - Falshe: ko hợp lệ
+        /// </returns>
         private static bool validateUser(string username, string password)
         {
             bool result = true;
@@ -135,6 +149,7 @@ namespace TestAD2
             dSearcher.Dispose();
         }
 
+
         private static List<User> getUsers()
         {
             List<User> list = new List<User>();
@@ -152,6 +167,12 @@ namespace TestAD2
             return list;
         }
 
+        /// <summary>
+        /// Hàm lấy thông tin các OU trong Domain mà Computer này đang tham gia
+        /// </summary>
+        /// <returns>
+        /// Trả về List chứa các OU
+        /// </returns>
         private static List<string> getOU()
         {
             List<string> list = new List<string>();
