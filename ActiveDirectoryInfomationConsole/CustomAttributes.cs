@@ -8,6 +8,5 @@ namespace TestAD2
 {
     class CustomAttributes
     {
-
     }
 }
