@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestAD2
 {
-    class CustomAttributes
+    class CustomAttributes : Attribute
     {
+        public string OUname { get; set; }
     }
 }

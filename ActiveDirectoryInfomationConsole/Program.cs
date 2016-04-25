@@ -26,7 +26,6 @@ namespace TestAD2
                         {
                             Console.Clear();
                             Console.Write("Invalid username or password. Try Again. (y/n): ");
-                            CHOOSE:
                             string key = Console.ReadLine().ToUpper();
                             if (key.Equals("Y") || key.Equals("YES"))
                             {
@@ -36,10 +35,6 @@ namespace TestAD2
                             {
                                 goto END;
                             }
-                            else
-                            {
-                                goto CHOOSE;
-                            }
                         }
                     }
                 PROCESS:
@@ -47,7 +42,7 @@ namespace TestAD2
                     Console.WriteLine("Welcome!");
                     while (true)
                     {
-                        Console.Write("Please select feature:\n[1]Show OU\n[2]Show User\n[3]Show Computer\n[4]Exit\n:");
+                        Console.Write("Please select feature:\n[1]Show OU\n[2]Show User\n[3]Show Computer\n[4]Show Groups\n[5]Exit\n:");
                         string choose = Console.ReadLine();
                         switch (choose)
                         {
@@ -62,16 +57,28 @@ namespace TestAD2
                             case "2":
                                 Users.Clear();
                                 Users = getUsers();
-                                OU.Clear();
-                                OU = getOU();
                                 foreach(User user in Users)
                                 {
                                     Console.WriteLine(user.SAMAccountName+" - "+user.commonName+" - "+user.ou);
                                 }
                                 break;
                             case "3":
+                                Computers.Clear();
+                                Computers = getComputer();
+                                foreach (string computer in Computers)
+                                {
+                                    Console.WriteLine(computer);
+                                }
                                 break;
                             case "4":
+                                Groups.Clear();
+                                Groups = getGroup();
+                                foreach(string group in Groups)
+                                {
+                                    Console.WriteLine(group);
+                                }
+                                break;
+                            case "5":
                                 Console.WriteLine("====================");
                                 goto END;
                             default:
@@ -102,6 +109,10 @@ namespace TestAD2
         // List lưu thông tin các User
         private static List<User> Users = new List<User>();
 
+        private static List<string> Groups = new List<string>();
+
+        private static List<string> Computers = new List<string>();
+
         /// <summary>
         /// Hàm kiểm tra xem username và password nhập vào có hợp lệ trong domain hay không
         /// </summary>
@@ -131,13 +142,14 @@ namespace TestAD2
         {
             DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
 
-            dSearcher.Filter = "(&(objectClass=user)(SAMAccountName=tuanle2))";
+            //dSearcher.Filter = "(&(objectClass=user)(SAMAccountName=tuanle2))";
+            dSearcher.Filter = "(&(objectClass=group))";
 
             foreach (SearchResult sResult in dSearcher.FindAll())
             {
-                //Console.WriteLine(TextProcessing.getProperty(sResult, "cn") + " - " + TextProcessing.getProperty(sResult, "SAMAccountName"));
-                var name = sResult.Properties["distinguishedname"][0];
-                Console.WriteLine(TextProcessing.getProperty(sResult, "distinguishedname"));
+                Console.WriteLine(TextProcessing.getProperty(sResult, "cn") + " - " + TextProcessing.getProperty(sResult, "SAMAccountName"));
+                //var name = sResult.Properties["distinguishedname"][0];
+                //Console.WriteLine(TextProcessing.getProperty(sResult, "distinguishedname"));
                 /*foreach (string key in sResult.Properties.PropertyNames)
                 {
                     foreach (Object myColl in sResult.Properties[key])
@@ -161,7 +173,6 @@ namespace TestAD2
                     SAMAccountName = TextProcessing.getProperty(result, "SAMAccountName"),
                     commonName = TextProcessing.getProperty(result, "cn"),
                     ou = TextProcessing.getOU(TextProcessing.getProperty(result, "distinguishedname"))
-                    //distinguishedname = TextProcessing.getProperty(result, "distinguishedname")
                 });
             }
             return list;
@@ -181,6 +192,34 @@ namespace TestAD2
             foreach(SearchResult result in dSearcher.FindAll())
             {
                 list.Add(TextProcessing.getProperty(result, "ou"));
+            }
+            dSearcher.Dispose();
+            return list;
+        }
+
+        private static List<string> getGroup()
+        {
+            List<string> list = new List<string>();
+            DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
+            dSearcher.Filter = "(&(objectClass=group))";
+
+            foreach (SearchResult sResult in dSearcher.FindAll())
+            {
+                list.Add(TextProcessing.getProperty(sResult, "cn"));
+            }
+            dSearcher.Dispose();
+            return list;
+        }
+
+        private static List<string> getComputer()
+        {
+            List<string> list = new List<string>();
+            DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
+            dSearcher.Filter = "(&(objectClass=computer))";
+
+            foreach (SearchResult sResult in dSearcher.FindAll())
+            {
+                list.Add(TextProcessing.getProperty(sResult, "cn"));
             }
             dSearcher.Dispose();
             return list;

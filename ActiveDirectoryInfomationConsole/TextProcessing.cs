@@ -10,11 +10,18 @@ namespace TestAD2
     class TextProcessing
     {
         /// <summary>
-        /// 
+        /// Lấy thuộc tính tương ứng 
+        /// trong bản ghi Kết quả (SearchResult) được truyền vào
         /// </summary>
-        /// <param name="sResult"></param>
-        /// <param name="propertyName"></param>
-        /// <returns></returns>
+        /// <param name="sResult">
+        /// Bản ghi kết quả truyền vào
+        /// </param>
+        /// <param name="propertyName">
+        /// Tên thuộc tính cần lấy
+        /// </param>
+        /// <returns>
+        /// string chứa giá trị tương ứng với thuộc tính truyền vào
+        /// </returns>
         public static string getProperty(SearchResult sResult, string propertyName)
         {
             if (sResult.Properties.Contains(propertyName))
@@ -59,10 +66,8 @@ namespace TestAD2
                     Console.Write("*");
                     password += info.KeyChar;
                 }
-                else if (info.Key == ConsoleKey.Backspace)
+                else if (info.Key == ConsoleKey.Backspace && !string.IsNullOrEmpty(password))
                 {
-                    if (!string.IsNullOrEmpty(password))
-                    {
                         // remove one character from the list of password characters
                         password = password.Substring(0, password.Length - 1);
                         // get the location of the cursor
@@ -73,7 +78,6 @@ namespace TestAD2
                         Console.Write(" ");
                         // move the cursor to the left by one character again
                         Console.SetCursorPosition(pos - 1, Console.CursorTop);
-                    }
                 }
                 info = Console.ReadKey(true);
             }
