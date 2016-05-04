@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.DirectoryServices;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -62,7 +63,7 @@ namespace TestAD2
                                     Console.WriteLine(user.SAMAccountName+" - "+user.commonName+" - "+user.ou);
                                 }
                                 break;
-                            case "3":
+                            case "3":                        
                                 Computers.Clear();
                                 Computers = getComputer();
                                 foreach (string computer in Computers)
@@ -211,6 +212,7 @@ namespace TestAD2
             return list;
         }
 
+        [CustomAttributes("BM KTMT")]
         private static List<string> getComputer()
         {
             List<string> list = new List<string>();
@@ -222,6 +224,9 @@ namespace TestAD2
                 list.Add(TextProcessing.getProperty(sResult, "cn"));
             }
             dSearcher.Dispose();
+            MethodBase method = MethodBase.GetCurrentMethod();
+            CustomAttributes attr = (CustomAttributes)method.GetCustomAttributes(typeof(CustomAttributes), true)[0];
+            Console.WriteLine("Attr OUname: "+attr.getOUname());
             return list;
         }
     }

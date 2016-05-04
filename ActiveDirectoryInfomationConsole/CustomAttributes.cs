@@ -6,8 +6,19 @@ using System.Threading.Tasks;
 
 namespace TestAD2
 {
-    class CustomAttributes : Attribute
+    [System.AttributeUsage(System.AttributeTargets.Method, AllowMultiple = true)]
+    class CustomAttributes : System.Attribute
     {
-        public string OUname { get; set; }
+        private string OUname;
+
+        public CustomAttributes(string OUname)
+        {
+            this.OUname = OUname;
+        }
+
+        public string getOUname()
+        {
+            return OUname;
+        }
     }
 }
