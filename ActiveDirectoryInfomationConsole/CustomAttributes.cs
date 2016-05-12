@@ -14,6 +14,7 @@ namespace TestAD2
         public CustomAttributes(string OUname)
         {
             this.OUname = OUname;
+            //Console.WriteLine(OUname);
         }
 
         public string getOUname()

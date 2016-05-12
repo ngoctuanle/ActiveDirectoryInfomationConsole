@@ -162,7 +162,12 @@ namespace TestAD2
             dSearcher.Dispose();
         }
 
-
+        /// <summary>
+        /// Hàm lấy thông tin các User trong Domain mà Computer này đang tham gia
+        /// </summary>
+        /// <returns>
+        /// Trả về List các User
+        /// </returns>
         private static List<User> getUsers()
         {
             List<User> list = new List<User>();
@@ -198,6 +203,12 @@ namespace TestAD2
             return list;
         }
 
+        /// <summary>
+        /// Hàm lấy thông tin các Groups trong Domain mà Computer này đang tham gia
+        /// </summary>
+        /// <returns>
+        /// Trả về danh sách các Group
+        /// </returns>
         private static List<string> getGroup()
         {
             List<string> list = new List<string>();
@@ -212,6 +223,12 @@ namespace TestAD2
             return list;
         }
 
+        /// <summary>
+        /// Hàm lấy thông tin các máy tính trong Domain mà Computer này đang tham gia
+        /// </summary>
+        /// <returns>
+        /// Trả về danh sách các máy tính
+        /// </returns>
         [CustomAttributes("BM KTMT")]
         private static List<string> getComputer()
         {
@@ -226,7 +243,7 @@ namespace TestAD2
             dSearcher.Dispose();
             MethodBase method = MethodBase.GetCurrentMethod();
             CustomAttributes attr = (CustomAttributes)method.GetCustomAttributes(typeof(CustomAttributes), true)[0];
-            Console.WriteLine("Attr OUname: "+attr.getOUname());
+            //Console.WriteLine("Attr OUname: "+attr.getOUname());
             return list;
         }
     }
